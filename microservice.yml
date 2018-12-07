@@ -1,0 +1,170 @@
+omg: 1
+lifecycle:
+  startup:
+    command: ["python", "/app/app.py"]
+actions:
+  create_table:
+    help: Create a table
+    http:
+      path: /tables/create
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      table:
+        help: The table to create
+        required: true
+        in: requestBody
+        type: string
+      columns:
+        help: |
+          A map of the to be created columns with their respective types
+        required: true
+        in: requestBody
+        type: map
+  drop_table:
+    help: Drop a table
+    http:
+      path: /tables/drop
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      table:
+        help: The table to drop
+        required: true
+        in: requestBody
+        type: string
+  insert:
+    help: Insert one or more entries into a table
+    http:
+      path: /insert
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      table:
+        help: The table to insert entries into
+        required: true
+        in: requestBody
+        type: string
+      values:
+        help: |
+          A map or a list of maps with the values to insert into the table.
+        required: true
+        in: requestBody
+        type: any
+  select:
+    help: Select entries from a table
+    http:
+      path: /select
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      table:
+        help: The table to select entries from
+        required: true
+        in: requestBody
+        type: string
+      where:
+        help: |
+          A query string of the parameters to filter on, e.g.
+          `{'columnName1': 'value2', 'columnName2': 'value2'}`
+          Use `{'$or': {cond1, cond2}} for `OR` chains.
+          Use e.g. `{'columName': {'$gt': 20}}} for more advanced comparisons.
+        required: true
+        in: requestBody
+        type: any
+  update:
+    help: Update entries in a table
+    http:
+      path: /update
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      table:
+        help: The table to update entries in
+        required: true
+        in: requestBody
+        type: string
+      values:
+        help: |
+          A map of values to update.
+        required: true
+        in: requestBody
+        type: map
+      where:
+        help: |
+          A query string of the parameters to filter on, e.g.
+          `{'columnName1': 'value2', 'columnName2': 'value2'}`
+          Use `{'$or': {cond1, cond2}} for `OR` chains.
+          Use e.g. `{'columName': {'$gt': 20}}} for more advanced comparisons.
+        required: false
+        in: requestBody
+        type: any
+  delete:
+    help: Delete entries from a table
+    http:
+      path: /delete
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      table:
+        help: The table to delete entries from
+        required: true
+        in: requestBody
+        type: string
+      where:
+        help: |
+          A query string of the parameters to filter on, e.g.
+          `{'columnName1': 'value2', 'columnName2': 'value2'}`
+          Use `{'$or': {cond1, cond2}} for `OR` chains.
+          Use e.g. `{'columName': {'$gt': 20}}} for more advanced comparisons.
+        required: false
+        in: requestBody
+        type: any
+  exec:
+    help: Run a SELECT statement
+    http:
+      path: /execute
+      port: 8000
+      method: post
+      contentType: application/json
+    arguments:
+      query:
+        help: The query
+        required: true
+        in: requestBody
+        type: string
+      data:
+        help: |
+          If your query contains named parameters, such as
+          SELECT * from my_table where name=%(username)s
+          then specify "data" as {"name": "foo"}.
+        required: false
+        in: requestBody
+        type: map
+
+environment:
+  MYSQL_HOST:
+    help: The hostname of the MySQL server to connect to
+    type: string
+    required: true
+  MYSQL_USER:
+    help: The username for connecting with the MySQL database
+    type: string
+    required: true
+  MYSQL_PASSWORD:
+    help: The username for connecting with the MySQL database
+    type: string
+    required: true
+  MYSQL_DATABASE:
+    help: The name of the database on the MySQL server
+    type: string
+    required: true
+  MYSQL_PORT:
+    help: The port of the MySQL server to connect to (default:3306)
+    type: string
