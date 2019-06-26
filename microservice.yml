@@ -3,7 +3,7 @@ lifecycle:
   startup:
     command: ["python", "/app/app.py"]
 actions:
-  create_table:
+  createTable:
     help: Create a table
     http:
       path: /tables/create
@@ -22,7 +22,7 @@ actions:
         required: true
         in: requestBody
         type: map
-  drop_table:
+  dropTable:
     help: Drop a table
     http:
       path: /tables/drop
