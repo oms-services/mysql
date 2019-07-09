@@ -83,7 +83,7 @@ Curious to [learn more](https://docs.storyscript.io/)?
 
 ## Usage with [OMG CLI](https://www.npmjs.com/package/omg)
 
-##### Create table
+### Create table
 ```shell
 $ omg run createTable -a table=<TABLE> -a columns=<MAP_OF_COLUMNS> -e MYSQL_HOST=<MYSQL_HOST> -e MYSQL_USER=<MYSQL_USER> -e MYSQL_PASSWORD=<MYSQL_PASSWORD> -e MYSQL_DATABASE=<MYSQL_DATABASE> -e MYSQL_PORT=<MYSQL_PORT>
 ```
