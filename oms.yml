@@ -1,11 +1,17 @@
 oms: 1
-lifecycle:
-  startup:
-    command: ['python', '/app/app.py']
 info:
   version: 1.0.0
   title: MySQL
   description: This is a mysql service
+  contact:
+    name: Open Microservices
+    url: 'https://openmicroservices.org'
+    email: core@openmicroservices.org
+lifecycle:
+  startup:
+    command:
+      - python
+      - /app/app.py
 actions:
   createTable:
     help: Create a table
@@ -172,7 +178,6 @@ actions:
     output:
       contentType: application/json
       type: map
-
 environment:
   MYSQL_HOST:
     help: The hostname of the MySQL server to connect to
@@ -191,5 +196,5 @@ environment:
     type: string
     required: true
   MYSQL_PORT:
-    help: The port of the MySQL server to connect to (default:3306)
+    help: 'The port of the MySQL server to connect to (default:3306)'
     type: string
