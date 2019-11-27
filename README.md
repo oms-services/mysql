@@ -1,6 +1,6 @@
 # _MySQL_ Open Microservice
 
-> Interact with a MySQL database. This is to create, update and resolve incidents on PagerDuty
+> Interact with a MySQL database.
 
 [![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org)
 [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices)
